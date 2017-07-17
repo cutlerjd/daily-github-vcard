@@ -29,10 +29,10 @@ http://jsfiddle.net/justinmc/QqnD3/
     flex-wrap: wrap;
 }
 
-.basics {
+.basics_container {
     padding: 30px;
     flex-grow: 1;
-    flex-basis: 200px
+    flex-basis: 300px
 }
 
 .story {
@@ -41,7 +41,7 @@ http://jsfiddle.net/justinmc/QqnD3/
     flex-basis: 600px
 }
 
-.line {
+#basics {
     border-right: 1px solid gray;
 }
 #image_container {
@@ -53,4 +53,8 @@ img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
+}
+span{
+    color: rgb(93,170,169);
+    font-size: 1.1em
 }
