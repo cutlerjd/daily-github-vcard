@@ -5,15 +5,37 @@ let image = document.getElementsByTagName('img')[0]
 let headerName = document.getElementsByTagName('h1')[0]
 
 function reqListener () {
-  user = JSON.parse(this.responseText);
+  //user = JSON.parse(this.responseText);
   updateUser(user)
 }
 
-let req = new XMLHttpRequest();
-req.open("GET", "https://api.github.com/users/cutlerjd");
-req.addEventListener("load", reqListener);
-req.send();
+let url = "https://api.github.com/users/cutlerjd"
+fetch(url)
+    .then(function(response) {
+      if (
+        response.headers.get("content-type").indexOf("application/json") !== -1
+      ) {
+        // checking response header
+        //.json() parses the response.
+        return response.json();
+      } else {
+        throw new TypeError(
+          'Response from "' + url + '" has unexpected "content-type"'
+        );
+      }
+    })
+    .then(function(data) {
+      console.log('JSON from "' + url + '" parsed successfully!');
+      console.log(data);
+      user = data
+      reqListener()
+    })
+    .catch(function(error) {
+      console.error(error.message);
+    });
 
+    function successHandler() {}
+    function errorHandler() 
 
 function updateUser(user){
     image.setAttribute("src",user.avatar_url)
